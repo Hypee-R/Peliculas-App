@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-3 mb-5 animate__animated animate__fadeIn animate__faster" *ngFor="let movie of _movies">
+
+        <img [src]="movie.poster_path | poster" class="img-fluid poster cp" [routerLink]="['/pelicula', movie.id]">
+
+        <div>
+            <h3>{{ movie.title }}</h3>
+            <div class="row">
+                <div class="col-10 text-white">
+                    <star-rating [value]="movie.vote_average" [totalstars]="10" checkedcolor="yellow" uncheckedcolor="gray" size="16px" [readonly]="true"></star-rating>
+                </div>
+                <div class="col-2 text-white">
+                    {{ movie.vote_average | number:'1.1-2' }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

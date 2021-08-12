@@ -1,0 +1,58 @@
+<div class="row animate__animated animate__fadeIn animate__faster" *ngIf="movieDetalle">
+    <div class="col-md-4">
+        <img [src]="movieDetalle.poster_path | poster" [alt]="movieDetalle.title" class="img-thumbnail">
+    </div>
+    <div class="col-md-8">
+        <h3>{{ movieDetalle.title }}</h3>
+        <div class="row">
+            <div class="col">
+                <star-rating [value]="movieDetalle.vote_average" [totalstars]="10" checkedcolor="yellow" uncheckedcolor="gray" size="20px" [readonly]="true"></star-rating>
+            </div>
+            <div class="col text-white">
+                {{ movieDetalle.vote_average | number: '1.1-2' }}
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-white">
+                {{ movieDetalle.overview }}
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-10">
+                <h5 class="text-white">Disponible en: </h5>
+            </div>
+            <div class="col">
+                <button class="btn btn-outline-info" (click)="regresar()">
+                Regresar
+              </button>
+            </div>
+            <div class="col-12" *ngIf="movieWatchProviders.results.MX && movieWatchProviders.results.MX.flatrate">
+                <h6 class="text-white">Stream</h6>
+                <div class="inline-flex" *ngFor="let provider of movieWatchProviders.results.MX.flatrate">
+                    <img [src]="provider.logo_path | poster" [alt]="provider.provider_name" class="img-provider">
+                    <!-- {{ provider.provider_name }} -->
+                </div>
+            </div>
+            <div class="col-12" *ngIf="movieWatchProviders.results.MX && movieWatchProviders.results.MX.rent">
+                <h6 class="text-white">Renta</h6>
+                <div class="inline-flex" *ngFor="let provider of movieWatchProviders.results.MX.rent">
+                    <img [src]="provider.logo_path | poster" [alt]="provider.provider_name" class="img-provider">
+                    <!-- {{ provider.provider_name }} -->
+                </div>
+            </div>
+            <div class="col-12" *ngIf="movieWatchProviders.results.MX && movieWatchProviders.results.MX.buy">
+                <h6 class="text-white">Compra</h6>
+                <div class="inline-flex" *ngFor="let provider of movieWatchProviders.results.MX.buy">
+                    <img [src]="provider.logo_path | poster" [alt]="provider.provider_name" class="img-provider">
+                    <!-- {{ provider.provider_name }} -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5 mb-5" *ngIf="movieCast.length > 0">
+    <div class="col">
+        <app-cast-slideshow [_cast]="movieCast"></app-cast-slideshow>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<h1>Resultados de tu búsqueda: <small class="text-capitalize">{{ peliculaSearch}}</small></h1>
+
+<hr>
+
+<h3 class="mt-5">Películas</h3>
+
+<app-peliculas-poster-grid [_movies]="resultadosSearch" *ngIf="resultadosSearch.length > 0"></app-peliculas-poster-grid>
